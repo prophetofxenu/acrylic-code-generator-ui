@@ -1,10 +1,7 @@
-import { SolidMode, RainbowMode, SpectrumCycleMode } from './code-gen/modes';
+import { SolidMode, RainbowMode, SpectrumCycleMode, Mode } from './code-gen/modes';
 import ModeList from './ModeList';
 
 import React, { useState } from 'react';
-import logo from './logo.svg';
-
-import styles from './App.module.scss';
 
 
 const testModes = [
@@ -16,11 +13,16 @@ const testModes = [
 function App() {
 
   const [modes, setModes] = useState(testModes);
-  const [activeMode, setActiveMode] = useState(null);
+  const [activeMode, setActiveMode] = useState<Mode | null>(null);
 
   return (
     <div className="acg-app">
-      <ModeList modes={modes} setModeList={setModes} />
+      <ModeList
+        modes={modes}
+        setModeList={setModes}
+        activeMode={activeMode}
+        setActiveMode={(m) => setActiveMode(m)}
+      />
     </div>
   );
 }

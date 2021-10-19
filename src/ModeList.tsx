@@ -7,17 +7,25 @@ import styles from './App.module.scss';
 
 interface ModeListItemProps { 
   mode: Mode,
-  index: number
+  index: number,
+  isActive: boolean,
+  setActive: () => void
 }
 
-function ModeListItem({ mode, index }: ModeListItemProps) {
+function ModeListItem({ mode, index, isActive, setActive }: ModeListItemProps) {
+  let divStyle: string;
+  if (isActive)
+    divStyle = styles.modeListDraggableActive;
+  else
+    divStyle = styles.modeListDraggable;
   return (
     <Draggable key={mode.Id} draggableId={mode.Id} index={index}>
       {(provided) => (
-        <div className={styles.modeListDraggable}
+        <div className={divStyle}
           {...provided.draggableProps}
           {...provided.dragHandleProps}
           ref={provided.innerRef}
+          onClick={setActive}
         >
           <h3 className={styles.modeListModeName}>{mode.Name}</h3>
         </div>
@@ -28,10 +36,12 @@ function ModeListItem({ mode, index }: ModeListItemProps) {
 
 interface ModeListProps {
   modes: Mode[],
-  setModeList: (modes: Mode[]) => void
+  setModeList: (modes: Mode[]) => void,
+  activeMode: Mode | null,
+  setActiveMode: (mode: Mode) => void
 }
 
-export default function ModeList({ modes, setModeList }: ModeListProps) {
+export default function ModeList({ modes, setModeList, activeMode, setActiveMode }: ModeListProps) {
 
   const onDragEnd = (result: any) => {
     const { destination, source, draggableId } = result;
@@ -56,7 +66,12 @@ export default function ModeList({ modes, setModeList }: ModeListProps) {
               ref={provided.innerRef}
             >
               {modes.map((mode, index) => (
-                <ModeListItem mode={mode} index={index} />
+                <ModeListItem
+                  mode={mode}
+                  index={index}
+                  isActive={mode === activeMode}
+                  setActive={() => setActiveMode(mode)}
+                />
               ))}
               {provided.placeholder}
             </div>

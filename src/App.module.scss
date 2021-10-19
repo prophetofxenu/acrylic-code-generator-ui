@@ -15,6 +15,11 @@
   border: 1px solid gray;
 }
 
+.modeListDraggableActive {
+  @extend .modeListDraggable;
+  border: 2px solid red;
+}
+
 .modeListModeName {
   display: inline-block;
 }
