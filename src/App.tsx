@@ -1,24 +1,26 @@
-import React from 'react';
+import { SolidMode, RainbowMode, SpectrumCycleMode } from './code-gen/modes';
+import ModeList from './ModeList';
+
+import React, { useState } from 'react';
 import logo from './logo.svg';
-import './App.css';
+
+import styles from './App.module.scss';
+
+
+const testModes = [
+  new SolidMode(),
+  new RainbowMode(),
+  new SpectrumCycleMode()
+];
 
 function App() {
+
+  const [modes, setModes] = useState(testModes);
+  const [activeMode, setActiveMode] = useState(null);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="acg-app">
+      <ModeList modes={modes} setModeList={setModes} />
     </div>
   );
 }

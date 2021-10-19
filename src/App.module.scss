@@ -1,0 +1,20 @@
+.modeList {
+  border: 2px solid gray;
+  width: min(20vw, 450px);
+  height: 100%;
+}
+
+.modeListHeading {
+  margin: 1rem;
+}
+
+.modeListDraggable {
+  background-color: black;
+  margin: 1rem;
+  padding: 0rem 0.5rem 0rem 0.5rem;
+  border: 1px solid gray;
+}
+
+.modeListModeName {
+  display: inline-block;
+}
