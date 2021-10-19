@@ -51,6 +51,7 @@ export class Mode {
     constructor(
         public Name: string,
         public Type: string,
+        public Description: string,
         public Params: Map<string, ModeParam>,
         public Values: Map<string, ValueType>
     ) {
@@ -88,6 +89,7 @@ export class BreathingMode extends Mode {
         super(
             "Breathing",
             "breathing",
+            "Breathing between a list of colors.",
             new Map([
                 ["colors", new ModeParam(
                     "Colors",
@@ -119,6 +121,7 @@ export class CandleMode extends Mode {
         super(
             "Candle",
             "candle",
+            "Random flickering of a color, like a candle.",
             new Map([
                 ["color", new ModeParam(
                     "Color",
@@ -142,6 +145,7 @@ export class MarqueeMode extends Mode {
         super(
             "Marquee",
             "marquee",
+            "Chasing lights of a color.",
             new Map([
                 ["color", new ModeParam(
                     "Color",
@@ -172,6 +176,7 @@ export class RainbowMode extends Mode {
         super(
             "Rainbow",
             "rainbow",
+            "Multiple colors, slowly moving through the color spectrum.",
             new Map(),
             new Map()
         )
@@ -186,6 +191,7 @@ export class SolidMode extends Mode {
         super(
             "Solid",
             "solid",
+            "Just a single, unchanging color.",
             new Map([
                 ["color", new ModeParam(
                     "Color",
@@ -209,6 +215,7 @@ export class SpectrumCycleMode extends Mode {
         super(
             "Spectrum Cycle",
             "spectrumcycle",
+            "Moves all lights through the color spectrum in unison.",
             new Map(),
             new Map()
         );

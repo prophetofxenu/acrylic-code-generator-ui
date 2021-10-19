@@ -1,7 +1,10 @@
 import { SolidMode, RainbowMode, SpectrumCycleMode, Mode } from './code-gen/modes';
 import ModeList from './ModeList';
+import ModeEdit from './ModeEdit';
 
 import React, { useState } from 'react';
+
+import styles from "./App.module.scss";
 
 
 const testModes = [
@@ -17,12 +20,17 @@ function App() {
 
   return (
     <div className="acg-app">
-      <ModeList
-        modes={modes}
-        setModeList={setModes}
-        activeMode={activeMode}
-        setActiveMode={(m) => setActiveMode(m)}
-      />
+      <div className={styles.modeMenu}>
+        <ModeList
+          modes={modes}
+          setModeList={setModes}
+          activeMode={activeMode}
+          setActiveMode={(m) => setActiveMode(m)}
+        />
+        {activeMode !== null &&
+        <ModeEdit mode={activeMode} />
+        }
+      </div>
     </div>
   );
 }

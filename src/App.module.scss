@@ -1,3 +1,7 @@
+.modeMenu {
+  display: flex;
+}
+
 .modeList {
   border: 2px solid gray;
   width: min(20vw, 450px);
@@ -22,4 +26,8 @@
 
 .modeListModeName {
   display: inline-block;
+}
+
+.modeEdit {
+  margin: 2rem;
 }
