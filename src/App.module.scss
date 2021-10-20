@@ -1,3 +1,24 @@
+/* elements */
+
+.select {
+  border: 1px solid grey;
+  background-color: black;
+  color: white;
+  padding: 0.25rem;
+}
+
+.button {
+  border: 1px solid grey;
+  background-color: black;
+  color: white;
+  padding: 0.25rem;
+}
+
+.button:active {
+  background-color: #1f1f1f;
+  color: grey;
+}
+
 .modeMenu {
   display: flex;
 }
@@ -9,6 +30,14 @@
 }
 
 .modeListHeading {
+  margin: 1rem;
+}
+
+.modeListEditor {
+  margin: 1rem;
+}
+
+.modeListEditor > select {
   margin: 1rem;
 }
 
