@@ -61,6 +61,13 @@
   margin: 2rem;
 }
 
-.colorEdit {
-  display: flex;
+.numEdit > label {
+  margin-right: 1rem;
+}
+
+.numEdit > input {
+  width: max(100px, 3vw);
+  border: 1px solid gray;
+  color: white;
+  background-color: black;
 }

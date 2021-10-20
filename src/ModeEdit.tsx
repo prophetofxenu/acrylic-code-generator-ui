@@ -9,7 +9,7 @@ import { useState } from "react";
 
 
 function useForceUpdate() {
-  const [value, setValue] = useState(0);
+  const [, setValue] = useState(0);
   return () => setValue(value => value + 1);
 }
 
@@ -33,8 +33,30 @@ function ColorEdit({ color, setColor }: ColorEditProps) {
     <div className={styles.colorEdit}>
       <ColorPicker width={350} height={100} color={col} onChange={onChange} dark />
     </div>
-  )
+  );
 }
+
+interface NumEditProps {
+  label: string;
+  num: number;
+  setNum: (n: number) => void
+}
+
+function NumEdit({ label, num, setNum }: NumEditProps) {
+  
+  const name = `${label.toLowerCase()}NumEdit`;
+
+  return (
+    <div className={styles.numEdit}>
+      <label htmlFor={name}>{label}</label>
+      <input type="number" name={name} value={num}
+        onChange={(e) => setNum(new Number(e.target.value).valueOf())}
+      />
+    </div>
+  );
+
+}
+
 interface ModeEditProps {
   mode: Mode;
 }
@@ -49,10 +71,23 @@ export default function ModeEdit({ mode }: ModeEditProps) {
       const color = mode.Values.get(k) as Color;
       paramComponents.push(
         <>
-          <h4>Color</h4>
+          <h4>{v.Name}</h4>
           <ColorEdit color={color} 
             setColor={(c) => {
               mode.Values.set(k, c);
+              forceUpdate();
+            }}
+          />
+        </>
+      );
+    } else if (v.Type === "num") {
+      const num = mode.Values.get(k) as number;
+      paramComponents.push(
+        <>
+          <h4>{v.Name}</h4>
+          <NumEdit label={v.Name} num={num}
+            setNum={(n) => {
+              mode.Values.set(k, n);
               forceUpdate();
             }}
           />

@@ -156,7 +156,7 @@ export class MarqueeMode extends Mode {
                 ["delay", new ModeParam(
                     "Delay",
                     "num",
-                    Color.fromRgb(255, 0, 0),
+                    100,
                     numberValidator(5, 200)
                 )]
             ]),
