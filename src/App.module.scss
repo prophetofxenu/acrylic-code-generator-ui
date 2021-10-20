@@ -3,9 +3,9 @@
 }
 
 .modeList {
-  border: 2px solid gray;
+  border-right: 2px solid gray;
   width: min(20vw, 450px);
-  height: 100%;
+  height: 100vh;
 }
 
 .modeListHeading {
@@ -30,4 +30,8 @@
 
 .modeEdit {
   margin: 2rem;
+}
+
+.colorEdit {
+  display: flex;
 }

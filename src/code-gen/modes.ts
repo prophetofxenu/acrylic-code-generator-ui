@@ -176,7 +176,7 @@ export class RainbowMode extends Mode {
         super(
             "Rainbow",
             "rainbow",
-            "Multiple colors, slowly moving through the color spectrum.",
+            "Slow movement through color spectrum, with lights slightly out of sync to create a gradient.",
             new Map(),
             new Map()
         )
