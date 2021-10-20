@@ -38,11 +38,12 @@ function ColorEdit({ color, setColor }: ColorEditProps) {
 
 interface NumEditProps {
   label: string;
+  unit?: string;
   num: number;
-  setNum: (n: number) => void
+  setNum: (n: number) => void;
 }
 
-function NumEdit({ label, num, setNum }: NumEditProps) {
+function NumEdit({ label, unit, num, setNum }: NumEditProps) {
   
   const name = `${label.toLowerCase()}NumEdit`;
 
@@ -52,6 +53,9 @@ function NumEdit({ label, num, setNum }: NumEditProps) {
       <input type="number" name={name} value={num}
         onChange={(e) => setNum(new Number(e.target.value).valueOf())}
       />
+      {unit &&
+      <p>{unit}</p>
+      }
     </div>
   );
 
@@ -71,7 +75,17 @@ export default function ModeEdit({ mode }: ModeEditProps) {
       const color = mode.Values.get(k) as Color;
       paramComponents.push(
         <>
-          <h4>{v.Name}</h4>
+          <div className={styles.paramTitle}>
+            <h4>{v.Name}</h4>
+            <button type="button" className={styles.button}
+              onClick={() => {
+                const def = v.Default as Color;
+                const color = Color.fromString(def.toString());
+                mode.Values.set(k, color);
+                forceUpdate();
+              }}
+            >Reset</button>
+          </div>
           <ColorEdit color={color} 
             setColor={(c) => {
               mode.Values.set(k, c);
@@ -84,8 +98,16 @@ export default function ModeEdit({ mode }: ModeEditProps) {
       const num = mode.Values.get(k) as number;
       paramComponents.push(
         <>
-          <h4>{v.Name}</h4>
-          <NumEdit label={v.Name} num={num}
+          <div className={styles.paramTitle}>
+            <h4>{v.Name}</h4>
+            <button type="button" className={styles.button}
+              onClick={() => {
+                mode.Values.set(k, v.Default);
+                forceUpdate();
+              }}
+            >Reset</button>
+          </div>
+          <NumEdit label={v.Name} num={num} unit="ms"
             setNum={(n) => {
               mode.Values.set(k, n);
               forceUpdate();

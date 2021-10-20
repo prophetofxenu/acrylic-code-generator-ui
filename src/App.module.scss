@@ -57,8 +57,31 @@
   display: inline-block;
 }
 
+.paramTitle {
+  display: flex;
+  align-items: center;
+
+  h4 {
+    margin-right: 1rem;
+  }
+
+  button {
+    height: 2rem;
+  }
+
+}
+
 .modeEdit {
   margin: 2rem;
+}
+
+.numEdit {
+  display: inline;
+
+  p {
+    margin: 0.5rem;
+    display: inline;
+  }
 }
 
 .numEdit > label {
