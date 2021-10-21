@@ -27,6 +27,20 @@
   margin: 1rem;
 }
 
+.menuBar {
+  border-bottom: 2px solid gray;
+  display: flex;
+  align-items: center;
+
+  button {
+    margin: 0.25rem;
+  }
+
+  h4 {
+    margin: 0.25rem 0.5rem 0.25rem 0.5rem;
+  }
+}
+
 .modeMenu {
   display: flex;
 }
