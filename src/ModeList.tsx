@@ -1,4 +1,4 @@
-import { SolidMode, Mode, CandleMode, MarqueeMode, RainbowMode, SpectrumCycleMode } from './code-gen/modes';
+import { SolidMode, Mode, CandleMode, MarqueeMode, RainbowMode, SpectrumCycleMode, BreathingMode } from './code-gen/modes';
 
 import { DragDropContext, Draggable, Droppable } from 'react-beautiful-dnd';
 
@@ -51,6 +51,7 @@ function ModeListEditor({ addMode, deleteSelectedMode }: ModeListEditorProps) {
         <option value="solid">Solid</option>
         <option value="candle">Candle</option>
         <option value="marquee">Marquee</option>
+        <option value="breathing">Breathing</option>
         <option value="rainbow">Rainbow</option>"
         <option value="spectrumcycle">Spectrum Cycle</option>
       </select>
@@ -84,37 +85,35 @@ export default function ModeList({ modes, setModeList, activeMode, setActiveMode
     switch(m) {
       case "solid":
         mode = new SolidMode();
-        arr.push(mode);
-        setModeList(arr);
-        setActiveMode(mode);
         break;
       case "candle":
         mode = new CandleMode();
-        arr.push(mode);
-        setModeList(arr);
-        setActiveMode(mode);
         break;
       case "marquee":
         mode = new MarqueeMode();
-        arr.push(mode);
-        setModeList(arr);
-        setActiveMode(mode);
+        break;
+      case "breathing":
+        mode = new BreathingMode();
         break;
       case "rainbow":
         mode = new RainbowMode();
-        arr.push(mode);
-        setModeList(arr);
-        setActiveMode(mode);
         break;
       case "spectrumcycle":
         mode = new SpectrumCycleMode();
-        arr.push(mode);
-        setModeList(arr);
-        setActiveMode(mode);
         break;
       default:
         throw Error(`${m} not implemented`);
     }
+    let modeCount = 1;
+    for (const m of modes) {
+      if (m.Type === mode.Type) {
+        modeCount++;
+      }
+    }
+    mode.Name += ` ${modeCount}`;
+    arr.push(mode);
+    setModeList(arr);
+    setActiveMode(mode);
   };
 
   const deleteSelectedMode = () => {

@@ -122,6 +122,16 @@ export default function ModeEdit({ mode }: ModeEditProps) {
     <div className={styles.modeEdit}>
       <h2>{mode.Name}</h2>
       <h4>{mode.Description}</h4>
+      <label htmlFor="modeName">Mode Name:</label>
+      <input type="text" name="modeName" className={styles.textInput}
+        value={mode.Name}
+        onChange={(e) => {
+          const name = e.target.value;
+          if (name.length === 0 || name.length > 20) return;
+          mode.Name = name;
+          forceUpdate();
+        }}
+      />
       {paramComponents.length === 0 &&
       <h4>{mode.Name} does not take any parameters.</h4>
       }

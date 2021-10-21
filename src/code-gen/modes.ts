@@ -47,6 +47,7 @@ export class ModeParam {
 export class Mode {
 
     public Id: string;
+    public DefaultName: string;
 
     constructor(
         public Name: string,
@@ -56,6 +57,7 @@ export class Mode {
         public Values: Map<string, ValueType>
     ) {
         this.Id = `${Type}${randomId()}`;
+        this.DefaultName = Name;
     }
 
     public setParam(key: string, value: ValueType): void {

@@ -19,6 +19,14 @@
   color: grey;
 }
 
+.textInput {
+  width: max(100px, 3vw);
+  border: 1px solid gray;
+  color: white;
+  background-color: black;
+  margin: 1rem;
+}
+
 .modeMenu {
   display: flex;
 }
@@ -82,15 +90,4 @@
     margin: 0.5rem;
     display: inline;
   }
-}
-
-.numEdit > label {
-  margin-right: 1rem;
-}
-
-.numEdit > input {
-  width: max(100px, 3vw);
-  border: 1px solid gray;
-  color: white;
-  background-color: black;
 }
