@@ -114,8 +114,13 @@
 .numEdit {
   display: inline;
 
+  input {
+    @extend .textInput;
+    
+    width: max(50px, 4vw);
+  }
+
   p {
-    margin: 0.5rem;
     display: inline;
   }
 }
