@@ -36,6 +36,65 @@ function ColorEdit({ color, setColor }: ColorEditProps) {
   );
 }
 
+interface ColorListEditProps {
+  colorList: Color[];
+  setList: (cl: Color[]) => void;
+}
+
+function ColorListEdit({ colorList, setList }: ColorListEditProps) {
+
+  const maxColors = 10;
+
+  const forceUpdate = useForceUpdate();
+
+  const [idx, setIdx] = useState(0);
+  const currentColor = colorList[idx];
+  const col = toColor("hex", "#" + currentColor.toString());
+
+  const add = () => {
+    if (colorList.length === maxColors) return;
+    const color = Color.fromRgb(255, 0, 0);
+    colorList.push(color);
+    setIdx(colorList.length - 1);
+  };
+
+  const del = () => {
+    if (colorList.length === 1) return;
+    colorList.splice(idx, 1);
+    if (idx !== 0) {
+      setIdx(idx - 1);
+    } else {
+      forceUpdate();
+    }
+  };
+
+  const pickerOnChange = (c: any) => {
+    currentColor.r = c.rgb.r;
+    currentColor.g = c.rgb.g;
+    currentColor.b = c.rgb.b;
+    forceUpdate();
+  };
+
+  return (
+    <div className={styles.colorListEdit}>
+      <h4>{colorList.length} colors in list ({maxColors} max)</h4>
+      <div className={styles.colorListEditHeader}>
+        <label htmlFor="colorIndex">Color:</label>
+        <input className={styles.textInput} type="number" name="colorIndex" value={idx}
+          onChange={(e) => {
+            const newIdx = new Number(e.target.value).valueOf();
+            if (newIdx < 0 || newIdx >= colorList.length) return;
+            setIdx(newIdx);
+          }}
+        />
+        <button className={styles.button} type="button" onClick={add}>Add</button>
+        <button className={styles.button} type="button" onClick={del}>Delete</button>
+      </div>
+      <ColorPicker width={350} height={100} color={col} onChange={pickerOnChange} dark />
+    </div>
+  )
+}
+
 interface NumEditProps {
   label: string;
   unit?: string;
@@ -94,6 +153,29 @@ export default function ModeEdit({ mode }: ModeEditProps) {
           />
         </>
       );
+    } else if (v.Type === "colorlist") {
+      const colorList = mode.Values.get(k) as Color[];
+      paramComponents.push(
+        <>
+          <div className={styles.paramTitle}>
+            <h4>{v.Name}</h4>
+            <button type="button" className={styles.button}
+              onClick={() => {
+                const def = v.Default as Color[];
+                const colorList = Array.from(def);
+                mode.Values.set(k, colorList);
+                forceUpdate();
+              }}
+            >Reset</button>
+          </div>
+          <ColorListEdit colorList={colorList}
+            setList={(cl) => {
+              mode.Values.set(k, cl);
+              forceUpdate();
+            }}
+          />
+        </>
+      )
     } else if (v.Type === "num") {
       const num = mode.Values.get(k) as number;
       paramComponents.push(

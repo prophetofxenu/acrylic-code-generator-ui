@@ -97,6 +97,20 @@
   margin: 2rem;
 }
 
+.colorListEditHeader {
+  display: flex;
+  align-items: center;
+
+  input {
+    width: max(40px, 1vw);
+  }
+
+  button {
+    margin: 0.5rem;
+  }
+
+}
+
 .numEdit {
   display: inline;
 
