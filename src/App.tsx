@@ -1,5 +1,5 @@
-import Color from './code-gen/color';
-import { SolidMode, RainbowMode, SpectrumCycleMode, Mode } from './code-gen/modes';
+import Color from './acg-lib/color';
+import { SolidMode, RainbowMode, SpectrumCycleMode, Mode } from './acg-lib/modes';
 import MenuBar from './MenuBar';
 import ModeList from './ModeList';
 import ModeEdit from './ModeEdit';

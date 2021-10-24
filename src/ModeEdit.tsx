@@ -1,5 +1,5 @@
-import { Mode } from "./code-gen/modes";
-import Color from "./code-gen/color";
+import { Mode } from "./acg-lib/modes";
+import Color from "./acg-lib/color";
 
 import { ColorPicker, toColor } from "react-color-palette";
 import "react-color-palette/lib/css/styles.css";

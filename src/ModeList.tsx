@@ -1,4 +1,4 @@
-import { SolidMode, Mode, CandleMode, MarqueeMode, RainbowMode, SpectrumCycleMode, BreathingMode } from './code-gen/modes';
+import { SolidMode, Mode, CandleMode, MarqueeMode, RainbowMode, SpectrumCycleMode, BreathingMode } from './acg-lib/modes';
 
 import { DragDropContext, Draggable, Droppable } from 'react-beautiful-dnd';
 
