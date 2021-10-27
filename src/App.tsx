@@ -68,9 +68,27 @@ function App() {
     setStatusMsg("Loaded!");
   };
 
-  const compile = () => {
+  const compile = async () => {
     save();
-    // TODO
+    const body = JSON.stringify(modes, replacer);
+    let res = await fetch("http://localhost:3001/api/compile", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: body
+    });
+    const packageName = (await res.json()).packageName;
+    res = await fetch(`http://localhost:3001/api/download/${packageName}`);
+    // holy shit this sucks
+    const url = window.URL.createObjectURL(await res.blob());
+    const link = document.createElement("a");
+    link.href = url;
+    link.setAttribute("download", packageName);
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+    window.URL.revokeObjectURL(url);
   };
 
   if (!init) {
