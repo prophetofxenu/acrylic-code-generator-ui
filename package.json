@@ -35,6 +35,7 @@
       "react-app/jest"
     ]
   },
+  "homepage": "http://prophetofxenu.net/acg",
   "browserslist": {
     "production": [
       ">0.2%",
