@@ -17,6 +17,7 @@ RUN mkdir ./src
 COPY --chown=acg-ui:acg-ui src/ ./src
 COPY --chown=acg-ui:acg-ui package-lock.json .
 COPY --chown=acg-ui:acg-ui package.json .
+COPY --chown=acg-ui:acg-ui .env.production .
 COPY --chown=acg-ui:acg-ui tsconfig.json .
 
 RUN npm install
