@@ -10,6 +10,15 @@ import Cookies from "js-cookie";
 import styles from "./App.module.scss";
 
 
+const ENV = process.env.NODE_ENV;
+let API_URL: string;
+if (ENV && ENV === "production") {
+  API_URL = "http://api:3001";
+} else {
+  API_URL = "http://localhost:3001";
+}
+
+
 function replacer(key: any, value: any) {
   if (value instanceof Map) {
     return {
@@ -71,7 +80,7 @@ function App() {
   const compile = async () => {
     save();
     const body = JSON.stringify(modes, replacer);
-    let res = await fetch("http://localhost:3001/api/compile", {
+    let res = await fetch(`${API_URL}/api/compile`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json"
@@ -79,7 +88,7 @@ function App() {
       body: body
     });
     const packageName = (await res.json()).packageName;
-    res = await fetch(`http://localhost:3001/api/download/${packageName}`);
+    res = await fetch(`${API_URL}/api/download/${packageName}`);
     // holy shit this sucks
     const url = window.URL.createObjectURL(await res.blob());
     const link = document.createElement("a");
