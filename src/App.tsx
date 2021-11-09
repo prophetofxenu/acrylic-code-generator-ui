@@ -13,9 +13,9 @@ import styles from "./App.module.scss";
 const ENV = process.env.NODE_ENV;
 let API_URL: string;
 if (ENV && ENV === "production") {
-  API_URL = process.env.REACT_APP_API_URL ?? "http://localhost:3001";
+  API_URL = process.env.REACT_APP_API_URL ?? "//localhost:3001";
 } else {
-  API_URL = "http://localhost:3001";
+  API_URL = "//localhost:3001";
 }
 
 
