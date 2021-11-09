@@ -66,7 +66,7 @@ function App() {
 
   const save = () => {
     const json = JSON.stringify(modes, replacer);
-    Cookies.set("modelist", json, { secure: true, sameSite: "strict" });
+    Cookies.set("modelist", json, { secure: true, sameSite: "strict", expires: 365 });
     setStatusMsg("Saved!");
   };
 
